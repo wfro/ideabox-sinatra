@@ -1,0 +1,13 @@
+<!-- To fix that [] for nil bug: change names to 
+idea[title] and not 'idea_title' -> sinatra will
+make a nested hash idea with title and desc. as keys -->
+
+<form action="/<%= id %>" method='POST'>
+  <p>
+    Edit your Idea:
+  </p>
+  <input type="hidden" name="_method" value="PUT" />
+  <input type='text' name='idea[title]' value="<%= idea.title %>"/><br/>
+  <textarea name='idea[description]'><%= idea.description %></textarea><br/>
+  <input type='submit'/>
+</form>
