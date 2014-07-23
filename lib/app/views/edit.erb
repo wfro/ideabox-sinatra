@@ -2,11 +2,17 @@
 idea[title] and not 'idea_title' -> sinatra will
 make a nested hash idea with title and desc. as keys -->
 
-<form action="/<%= id %>" method='POST'>
+<form action='/<%= idea.id %>' method='POST'>
   <p>
-    Edit your Idea:
+    <% if idea.id %>
+      Edit your Idea:
+    <% else %>
+      Your Idea:
+    <% end %>
   </p>
-  <input type="hidden" name="_method" value="PUT" />
+  <% if idea.id %>
+    <input type="hidden" name="_method" value="PUT" />
+  <% end %>
   <input type='text' name='idea[title]' value="<%= idea.title %>"/><br/>
   <textarea name='idea[description]'><%= idea.description %></textarea><br/>
   <input type='submit'/>
