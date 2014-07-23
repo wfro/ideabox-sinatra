@@ -16,13 +16,20 @@ class IdeaBoxApp < Sinatra::Base
     erb(:index, locals: {ideas: Idea.all})
   end
 
+  get '/:id/edit' do |id|
+    idea = Idea.find(id.to_i)
+    erb(:edit, locals: {id: id, idea: idea})
+  end
+
   post '/' do
-    # 1. Create an idea based on the form parameters
-    idea = Idea.new(params['idea_title'], params['idea_description'])
-    # 2. Store it
+    idea = Idea.new(params[:idea])
     idea.save
-    # 3. Send us back to the index page to see all ideas
     redirect('/')
+  end
+
+  put '/:id' do |id|
+    Idea.update(id.to_i, params[:idea])
+    redirect '/'
   end
 
   delete '/:id' do |id|
