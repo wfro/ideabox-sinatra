@@ -1,4 +1,3 @@
-require_relative 'idea'
 require 'yaml/store'
 
 class IdeaStore
